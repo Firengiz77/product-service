@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.DeleteMapping;
 
+import java.io.IOException;
 import java.util.List;
 
 
@@ -33,12 +34,12 @@ public class ProductController {
     }
 
     @PostMapping
-    public ProductResponseDto createProduct(@RequestBody ProductRequestDto productDto) {
+    public ProductResponseDto createProduct(ProductRequestDto productDto) {
         return productService.createProduct(productDto);
     }
 
     @PutMapping("/{id}")
-    public ProductResponseDto updateProduct(@PathVariable Long id,@RequestBody ProductRequestDto productDto) {
+    public ProductResponseDto updateProduct(@PathVariable Long id,ProductRequestDto productDto) throws IOException {
         return productService.updateProduct(id,productDto);
     }
 
