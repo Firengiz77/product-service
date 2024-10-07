@@ -1,17 +1,21 @@
-package com.example.product_service.dto;
+package com.example.product_service.dto.response;
 
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+
+import java.util.List;
 
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class ProductDto {
+@Builder
+public class ProductResponseDto {
 
     private String name;
     private String description;
     private Double price;
     private String image;
-
+    private CategoryResponseDto category;
 }

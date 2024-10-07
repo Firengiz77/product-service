@@ -1,8 +1,9 @@
 category crud +
 category relationship category_id (add column it must be one-to-many,many-to-one relation) +
+product crud +
+product and category relationship +
 
-product crud
-product and category relationship
+
 product image create
 
 
