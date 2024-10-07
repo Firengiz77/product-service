@@ -1,11 +1,10 @@
-category crud
+category crud +
+category relationship category_id (add column it must be one-to-many,many-to-one relation) +
+
 product crud
-
-
-category relationship category_id (add column it must be one-to-many)
-product image create
-product image update
 product and category relationship
+product image create
+
 
 with bareer token usr_id and product_id it will be many-to-many relationship
 admin can create product

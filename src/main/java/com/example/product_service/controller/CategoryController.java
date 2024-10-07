@@ -1,6 +1,8 @@
 package com.example.product_service.controller;
 
-import com.example.product_service.dto.CategoryDto;
+
+import com.example.product_service.dto.request.CategoryRequestDto;
+import com.example.product_service.dto.response.CategoryResponseDto;
 import com.example.product_service.service.CategoryService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,22 +25,22 @@ public class CategoryController {
     private final CategoryService categoryService;
 
     @GetMapping
-    public List<CategoryDto> getCategories() {
+    public List<CategoryResponseDto> getCategories() {
         return categoryService.getCategories();
     }
 
     @GetMapping("/{id}")
-    public CategoryDto getCategory(@PathVariable Long id) {
+    public CategoryResponseDto getCategory(@PathVariable Long id) {
         return categoryService.getCategory(id);
     }
 
     @PostMapping
-    public CategoryDto createCategory(@RequestBody CategoryDto categoryDto) {
+    public CategoryResponseDto createCategory(@RequestBody CategoryRequestDto categoryDto) {
         return categoryService.createCategory(categoryDto);
     }
 
     @PutMapping("/{id}")
-    public CategoryDto updateCategory(@PathVariable Long id,@RequestBody CategoryDto categoryDto) {
+    public CategoryResponseDto updateCategory(@PathVariable Long id,@RequestBody CategoryRequestDto categoryDto) {
         return categoryService.updateCategory(id,categoryDto);
     }
 
