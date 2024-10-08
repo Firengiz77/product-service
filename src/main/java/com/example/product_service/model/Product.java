@@ -28,7 +28,7 @@ public class Product {
     @JoinColumn(name = "image_id")
     private Image image;
 
-    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JoinColumn(name = "category_id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "category_id", nullable = false)
     private Category category;
 }

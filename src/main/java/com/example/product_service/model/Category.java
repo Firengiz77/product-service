@@ -3,6 +3,7 @@ package com.example.product_service.model;
 import jakarta.persistence.*;
 import lombok.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -20,8 +21,13 @@ public class Category {
     private String name;
     private String description;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "parent_category_id")
-    private List<Category> subcategories;
+    private Category subcategories;
+
+    @OneToMany(mappedBy = "category", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<Product> products = new ArrayList<>();
+
+
 
 }

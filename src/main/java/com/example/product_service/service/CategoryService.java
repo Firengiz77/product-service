@@ -30,7 +30,7 @@ public class CategoryService {
         Category category = Category.builder()
                 .name(categoryDto.getName())
                 .description(categoryDto.getDescription())
-                .subcategories(categoryRepository.findAllById(categoryDto.getSubcategories()))
+                .subcategories(categoryDto.getSubcategories() == 0 ? null : categoryRepository.findById(categoryDto.getSubcategories()).orElseThrow(()->new CategoryNotFoundException()) )
                 .build();
         return categoryMap.toCategoryDto(categoryRepository.save(category));
     }
@@ -39,7 +39,7 @@ public class CategoryService {
         Category category = categoryRepository.findById(id).orElseThrow(()->new CategoryNotFoundException());
         category.setName(categoryDto.getName());
         category.setDescription(categoryDto.getDescription());
-        category.setSubcategories(categoryRepository.findAllById(categoryDto.getSubcategories()));
+        category.setSubcategories(categoryDto.getSubcategories() == 0 ? null : categoryRepository.findById(categoryDto.getSubcategories()).orElseThrow(()->new CategoryNotFoundException()));
         return categoryMap.toCategoryDto(categoryRepository.save(category));
     }
 

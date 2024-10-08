@@ -14,6 +14,6 @@ public class CategoryRequestDto {
 
     private String name;
     private String description;
-    private List<Long> subcategories;
+    private Long subcategories;
 
 }

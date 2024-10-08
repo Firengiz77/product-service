@@ -13,5 +13,5 @@ import java.util.List;
 public class CategoryResponseDto {
     private String name;
     private String description;
-    private List<CategoryResponseDto> subcategories;
+    private CategoryResponseDto subcategories;
 }
