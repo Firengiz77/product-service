@@ -28,7 +28,6 @@ public class ProductService {
 
 
     public List<ProductResponseDto> getProducts() {
-
        return productMap.toDto(productRepository.findAll());
     }
 
@@ -37,6 +36,7 @@ public class ProductService {
     }
 
     public ProductResponseDto createProduct(ProductRequestDto productDto,String token) {
+
         String userId = jwtTokenUtil.extractUserId(token);
         Image image1 = imageService.create(productDto.getImage());
         Product product = Product.builder()
