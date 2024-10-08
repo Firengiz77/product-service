@@ -5,6 +5,7 @@ product and category relationship +
 product image create +
 with bareer token user_id and product_id it will be one to one relation relationship+
 
+eyni category ferqli product ucun dublicate erroru var
 admin can manage category (user cannot)
 admin can manage product (user cannot)
 user can buy product (admin cannot)
