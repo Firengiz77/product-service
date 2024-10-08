@@ -9,7 +9,9 @@ import com.example.product_service.model.Image;
 import com.example.product_service.model.Product;
 import com.example.product_service.repository.CategoryRepository;
 import com.example.product_service.repository.ProductRepository;
+import com.example.product_service.util.JwtTokenUtil;
 import lombok.RequiredArgsConstructor;
+import org.apache.catalina.User;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
@@ -22,8 +24,11 @@ public class ProductService {
     private final CategoryRepository categoryRepository;
     private final ProductMap productMap;
     private final ImageService imageService;
+    private final JwtTokenUtil jwtTokenUtil;
+
 
     public List<ProductResponseDto> getProducts() {
+
        return productMap.toDto(productRepository.findAll());
     }
 
@@ -31,7 +36,8 @@ public class ProductService {
         return productMap.toProductDto(productRepository.findById(id).orElseThrow(()-> new ProductNotFoundException()));
     }
 
-    public ProductResponseDto createProduct(ProductRequestDto productDto) {
+    public ProductResponseDto createProduct(ProductRequestDto productDto,String token) {
+        String userId = jwtTokenUtil.extractUserId(token);
         Image image1 = imageService.create(productDto.getImage());
         Product product = Product.builder()
                 .name(productDto.getName())
@@ -39,6 +45,7 @@ public class ProductService {
                 .description(productDto.getDescription())
                 .image(image1)
                 .category(categoryRepository.findById(productDto.getCategory()).orElseThrow(()->new CategoryNotFoundException()))
+                .userId(userId)
                 .build();
         return productMap.toProductDto(productRepository.save(product));
     }

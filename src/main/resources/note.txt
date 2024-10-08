@@ -3,9 +3,8 @@ category relationship category_id (add column it must be one-to-many,many-to-one
 product crud +
 product and category relationship +
 product image create +
+with bareer token user_id and product_id it will be one to one relation relationship+
 
-
-with bareer token usr_id and product_id it will be many-to-many relationship
 admin can manage category (user cannot)
 admin can manage product (user cannot)
 user can buy product (admin cannot)

@@ -22,6 +22,7 @@ public class Product {
     private String name;
     private String description;
     private Double price;
+    private String userId;
 
     @OneToOne
     @JoinColumn(name = "image_id")
@@ -30,6 +31,4 @@ public class Product {
     @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "category_id")
     private Category category;
-
-
 }

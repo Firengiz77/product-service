@@ -1,6 +1,7 @@
 package com.example.product_service.map;
 
 import com.example.product_service.dto.response.ProductResponseDto;
+import com.example.product_service.dto.response.UserResponseDto;
 import com.example.product_service.model.Image;
 import com.example.product_service.model.Product;
 import org.mapstruct.*;
@@ -18,7 +19,6 @@ public interface ProductMap {
     @Mapping(source = "price", target = "price")
     @Mapping(source = "image", target = "image", qualifiedByName = "extractImageName")
     @Mapping(source = "category", target = "category")
-
     ProductResponseDto toProductDto(Product product);
 
     @Mapping(source = "image", target = "image", ignore = true)
@@ -29,5 +29,6 @@ public interface ProductMap {
     default String extractImageName(Image image) {
         return image != null ? image.getName() : null;
     }
+
 
 }

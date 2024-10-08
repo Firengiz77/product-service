@@ -17,5 +17,6 @@ public class ProductRequestDto {
     private Double price;
     private MultipartFile image;
     private Long category;
+    private String userId;
 
 }
