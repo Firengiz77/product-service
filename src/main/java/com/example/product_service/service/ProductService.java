@@ -11,7 +11,6 @@ import com.example.product_service.repository.CategoryRepository;
 import com.example.product_service.repository.ProductRepository;
 import com.example.product_service.util.JwtTokenUtil;
 import lombok.RequiredArgsConstructor;
-import org.apache.catalina.User;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;

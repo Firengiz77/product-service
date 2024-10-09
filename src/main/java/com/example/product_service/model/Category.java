@@ -20,6 +20,7 @@ public class Category {
 
     private String name;
     private String description;
+    private String userId;
 
     @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinColumn(name = "parent_category_id")

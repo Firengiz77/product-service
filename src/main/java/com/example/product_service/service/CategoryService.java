@@ -6,6 +6,7 @@ import com.example.product_service.exception.CategoryNotFoundException;
 import com.example.product_service.map.CategoryMap;
 import com.example.product_service.model.Category;
 import com.example.product_service.repository.CategoryRepository;
+import com.example.product_service.util.JwtTokenUtil;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
@@ -17,6 +18,7 @@ public class CategoryService {
 
     private final CategoryRepository categoryRepository;
     private final CategoryMap categoryMap;
+    private final JwtTokenUtil jwtTokenUtil;
 
     public List<CategoryResponseDto> getCategories() {
         return categoryMap.toDto(categoryRepository.findAll());
@@ -26,11 +28,13 @@ public class CategoryService {
         return categoryMap.toCategoryDto(categoryRepository.findById(id).orElseThrow(()->new CategoryNotFoundException()));
     }
 
-    public CategoryResponseDto createCategory(CategoryRequestDto categoryDto) {
+    public CategoryResponseDto createCategory(CategoryRequestDto categoryDto,String token) {
+        String userId = jwtTokenUtil.extractUserId(token);
         Category category = Category.builder()
                 .name(categoryDto.getName())
                 .description(categoryDto.getDescription())
                 .subcategories(categoryDto.getSubcategories() == 0 ? null : categoryRepository.findById(categoryDto.getSubcategories()).orElseThrow(()->new CategoryNotFoundException()) )
+                .userId(userId)
                 .build();
         return categoryMap.toCategoryDto(categoryRepository.save(category));
     }

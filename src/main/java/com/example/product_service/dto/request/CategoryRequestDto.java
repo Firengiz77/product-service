@@ -15,5 +15,5 @@ public class CategoryRequestDto {
     private String name;
     private String description;
     private Long subcategories;
-
+    private String userId;
 }

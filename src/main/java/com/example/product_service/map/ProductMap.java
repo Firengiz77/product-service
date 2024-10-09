@@ -1,7 +1,6 @@
 package com.example.product_service.map;
 
 import com.example.product_service.dto.response.ProductResponseDto;
-import com.example.product_service.dto.response.UserResponseDto;
 import com.example.product_service.model.Image;
 import com.example.product_service.model.Product;
 import org.mapstruct.*;

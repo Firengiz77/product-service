@@ -14,7 +14,15 @@ public class JwtTokenUtil {
                 .setSigningKey(SECRET_KEY)
                 .parseClaimsJws(token.replace("Bearer ", ""))
                 .getBody();
+
         return claims.getSubject();
     }
 
+    public String extractUserRole(String token) {
+        Claims claims = Jwts.parser()
+                .setSigningKey(SECRET_KEY)
+                .parseClaimsJws(token.replace("Bearer ", ""))
+                .getBody();
+        return (String) claims.get("role");
+    }
 }

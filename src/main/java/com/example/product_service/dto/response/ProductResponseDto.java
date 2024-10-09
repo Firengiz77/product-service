@@ -15,5 +15,5 @@ public class ProductResponseDto {
     private String description;
     private Double price;
     private String image;
-    private CategoryResponseDto category;
+    private CategoryProductDto category;
 }

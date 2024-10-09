@@ -1,9 +1,6 @@
 package com.example.product_service.handler;
 
-import com.example.product_service.exception.CategoryAlreadyExistsException;
-import com.example.product_service.exception.CategoryNotFoundException;
-import com.example.product_service.exception.ProductAlreadyExistsException;
-import com.example.product_service.exception.ProductNotFoundException;
+import com.example.product_service.exception.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -31,4 +28,15 @@ public class GlobalExceptionHandler {
     public ResponseEntity<String> handleCategoryAlreadyExistsException(CategoryAlreadyExistsException ex) {
         return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
     }
+
+    @ExceptionHandler(NoAccessException.class)
+    public ResponseEntity<String> handleNoAccessException(NoAccessException ex) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
+    }
+
+    @ExceptionHandler(NoAuthenticationException.class)
+    public ResponseEntity<String> handleNoAuthenticationException(NoAuthenticationException ex) {
+        return ResponseEntity.status(HttpStatus.CONFLICT).body(ex.getMessage());
+    }
+
 }

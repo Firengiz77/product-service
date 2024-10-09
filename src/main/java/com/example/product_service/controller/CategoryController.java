@@ -3,16 +3,12 @@ package com.example.product_service.controller;
 
 import com.example.product_service.dto.request.CategoryRequestDto;
 import com.example.product_service.dto.response.CategoryResponseDto;
+import com.example.product_service.exception.NoAccessException;
+import com.example.product_service.exception.NoAuthenticationException;
 import com.example.product_service.service.CategoryService;
+import com.example.product_service.util.JwtTokenUtil;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,6 +19,7 @@ import java.util.List;
 public class CategoryController {
 
     private final CategoryService categoryService;
+    private final JwtTokenUtil jwtTokenUtil;
 
     @GetMapping
     public List<CategoryResponseDto> getCategories() {
@@ -35,17 +32,39 @@ public class CategoryController {
     }
 
     @PostMapping
-    public CategoryResponseDto createCategory(@RequestBody CategoryRequestDto categoryDto) {
-        return categoryService.createCategory(categoryDto);
+    public CategoryResponseDto createCategory(@RequestBody CategoryRequestDto categoryDto, @RequestHeader(value = "Authorization", required = false) String token) {
+        if(token == null || token.isEmpty()){
+            throw new NoAuthenticationException();
+        }
+        String userRole = jwtTokenUtil.extractUserRole(token);
+        if(userRole.equals("USER")) {
+            throw new NoAccessException();
+        }
+        return categoryService.createCategory(categoryDto,token);
     }
 
     @PutMapping("/{id}")
-    public CategoryResponseDto updateCategory(@PathVariable Long id,@RequestBody CategoryRequestDto categoryDto) {
+    public CategoryResponseDto updateCategory(@PathVariable Long id,@RequestBody CategoryRequestDto categoryDto, @RequestHeader(value = "Authorization", required = false) String token) {
+        if(token == null || token.isEmpty()){
+            throw new NoAuthenticationException();
+        }
+        String userRole = jwtTokenUtil.extractUserRole(token);
+        if(userRole.equals("USER")) {
+            throw new NoAccessException();
+        }
+
         return categoryService.updateCategory(id,categoryDto);
     }
 
     @DeleteMapping("/{id}")
-    public String deleteCategory(@PathVariable Long id) {
+    public String deleteCategory(@PathVariable Long id, @RequestHeader(value = "Authorization", required = false) String token) {
+        if(token == null || token.isEmpty()){
+            throw new NoAuthenticationException();
+        }
+        String userRole = jwtTokenUtil.extractUserRole(token);
+        if(userRole.equals("USER")) {
+            throw new NoAccessException();
+        }
         return categoryService.deleteCategory(id);
     }
 }

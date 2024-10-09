@@ -7,10 +7,7 @@ with bareer token user_id and product_id it will be one to one relation relation
 eyni category ferqli product ucun dublicate erroru var -> many to one relation olmalidir +
 tablelerden elave columnlari silmek +
 category tablesinde parent_category yanlis gosterir +
-
-authorize yerin : basqa urle istek atib rol,permissionlari cekecek
-authentication-> spring security yuklenmelidir
-
-admin can manage category (user cannot)
-admin can manage product (user cannot)
-user can buy product (admin cannot)
+authorize, authentication : role gore yoxlanis +
+admin can manage category (user cannot) +
+admin can manage product (user cannot) +
+products crudunda yalniz category name gosterilsin +
