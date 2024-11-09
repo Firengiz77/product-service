@@ -12,6 +12,21 @@ admin can manage category (user cannot) +
 admin can manage product (user cannot) +
 products crudunda yalniz category name gosterilsin +
 
-Sekiller ucun yarica ms yarat, sekilin crudu ora bas versin
-user-servicece profile photo yeri duzelt ve hemin sekilde crud hissesi file-ms de gorunsun
-file-ms cokdukde sekiller yenede islemelidir
+
+
+Userlerin ve adminlerin gore bileceyi categorylari ayirmaq
+Userlerin ve adminlerin gore bileceyi productlari ayirmaq
+
+product hissesine stock ve price elave etmek
+productda comment elave oluna bilmesi
+product detailde yazilmis commentlerinde gonderilmesi
+productslarin gosterilen yerinde pagination qurulmasi
+
+
+
+Order service yaradilmasi ve orda :
+userlerin mehsul ala bilmesi / (balansdan cixilmasi)
+mehsul alanda stock sayindan azalmasi
+
+notification-service:
+mehsul alinanda onu paylasan adminin ve alan userin emailine bildiris getmesi ayri ayri

@@ -29,5 +29,4 @@ public interface ProductMap {
         return image != null ? image.getName() : null;
     }
 
-
 }

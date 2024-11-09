@@ -27,7 +27,7 @@ public class ProductService {
 
 
     public List<ProductResponseDto> getProducts() {
-       return productMap.toDto(productRepository.findAll());
+        return productMap.toDto(productRepository.findAll());
     }
 
     public ProductResponseDto getProduct(Long id) {

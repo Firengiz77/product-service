@@ -2,16 +2,22 @@ spring:
   application:
     name: product-service
   datasource:
-    url: jdbc:mysql://localhost:3306/user_service
-    username: root
+    url: jdbc:postgresql://ecom.cdsiw8okgh2n.eu-central-1.rds.amazonaws.com:5432/ecom
+    username: fira
     password: Firengiz77
-    driver-class-name: com.mysql.cj.jdbc.Driver
+    driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
-      ddl-auto: update
+      ddl-auto: create
     show-sql: true
 doc:
   api-docs:
     path: /api-docs
   swagger-ui:
     path: /swagger-ui.html
+
+server:
+  port: 8082
+
+file-service:
+  url: http://localhost:8082
