@@ -26,21 +26,28 @@ public class ProductService {
     private final JwtTokenUtil jwtTokenUtil;
 
 
-    public List<ProductResponseDto> getProducts() {
+    public List<ProductResponseDto> getAdminProducts() {
+        return productMap.toDto(productRepository.findAll());
+    }
+    public List<ProductResponseDto> getUserProducts() {
         return productMap.toDto(productRepository.findAll());
     }
 
-    public ProductResponseDto getProduct(Long id) {
+    public ProductResponseDto getAdminProduct(Long id) {
+        return productMap.toProductDto(productRepository.findById(id).orElseThrow(()-> new ProductNotFoundException()));
+    }
+    public ProductResponseDto getUserProduct(Long id) {
         return productMap.toProductDto(productRepository.findById(id).orElseThrow(()-> new ProductNotFoundException()));
     }
 
     public ProductResponseDto createProduct(ProductRequestDto productDto,String token) {
-
         String userId = jwtTokenUtil.extractUserId(token);
         Image image1 = imageService.create(productDto.getImage());
+
         Product product = Product.builder()
                 .name(productDto.getName())
                 .price(productDto.getPrice())
+                .stock(productDto.getStock())
                 .description(productDto.getDescription())
                 .image(image1)
                 .category(categoryRepository.findById(productDto.getCategory()).orElseThrow(()->new CategoryNotFoundException()))
@@ -53,6 +60,7 @@ public class ProductService {
         Product product = productRepository.findById(id).orElseThrow(()-> new ProductNotFoundException());
         product.setName(productDto.getName());
         product.setPrice(productDto.getPrice());
+        product.setStock(productDto.getStock());
         product.setDescription(productDto.getDescription());
         Image image1 = imageService.update(product.getImage().getId(),productDto.getImage());
         product.setImage(image1);

@@ -11,22 +11,23 @@ authorize, authentication : role gore yoxlanis +
 admin can manage category (user cannot) +
 admin can manage product (user cannot) +
 products crudunda yalniz category name gosterilsin +
+Userlerin ve adminlerin gore bileceyi productlari (elave commentler falan olacaq, product list ve detailleri ayirmaq) ayirmaq+
+product hissesine stock ve price elave etmek +
 
+productda comment elave oluna bilmesi -
+admin terefden siline bilmesi, listlerde gorule bilmesi -
+product detailde yazilmis commentlerinde gosterilmesi -
+productslarin gosterilen yerinde pagination qurulmasi -
 
-
-Userlerin ve adminlerin gore bileceyi categorylari ayirmaq
-Userlerin ve adminlerin gore bileceyi productlari ayirmaq
-
-product hissesine stock ve price elave etmek
-productda comment elave oluna bilmesi
-product detailde yazilmis commentlerinde gonderilmesi
-productslarin gosterilen yerinde pagination qurulmasi
-
-
+productun icinde subcategories -> only name kifayetdir
+Productda filterlenme qoyulmasi: Filter ve xususiyyetlerin yaratmaq imkani (admin terefden)
+Userden xususiyyetlerin id lerin goturulmesi
+Products filterlenme oluna bilmesi ucun api
+Productun search ucun api (user terefden)
 
 Order service yaradilmasi ve orda :
 userlerin mehsul ala bilmesi / (balansdan cixilmasi)
 mehsul alanda stock sayindan azalmasi
 
 notification-service:
-mehsul alinanda onu paylasan adminin ve alan userin emailine bildiris getmesi ayri ayri
+mehsul alinanda onu paylasan adminin ve alan userin emailine bildiris getmesi ayri ayri -> order service yaradildiqdan sonra

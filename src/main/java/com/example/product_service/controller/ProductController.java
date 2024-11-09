@@ -20,14 +20,30 @@ public class ProductController {
     private final ProductService productService;
     private final JwtTokenUtil jwtTokenUtil;
 
+    @GetMapping("/admin")
+    public List<ProductResponseDto> getAdminProducts(@RequestHeader(value = "Authorization", required = false) String token) {
+        if(token == null || token.isEmpty()){
+            throw new NoAuthenticationException();
+        }
+        return productService.getAdminProducts();
+    }
+
     @GetMapping
-    public List<ProductResponseDto> getProducts() {
-        return productService.getProducts();
+    public List<ProductResponseDto> getUserProducts() {
+        return productService.getUserProducts();
+    }
+
+    @GetMapping("/admin/{id}")
+    public ProductResponseDto getAdminProduct(@PathVariable Long id,@RequestHeader(value = "Authorization", required = false)  String token) {
+        if(token == null || token.isEmpty()){
+            throw new NoAuthenticationException();
+        }
+        return productService.getAdminProduct(id);
     }
 
     @GetMapping("/{id}")
-    public ProductResponseDto getProduct(@PathVariable Long id) {
-        return productService.getProduct(id);
+    public ProductResponseDto getUserProduct(@PathVariable Long id) {
+        return productService.getUserProduct(id);
     }
 
     @PostMapping
@@ -66,5 +82,4 @@ public class ProductController {
         }
         return productService.deleteProduct(id);
     }
-
 }

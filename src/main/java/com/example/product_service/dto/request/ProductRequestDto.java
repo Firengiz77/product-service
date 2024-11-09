@@ -15,6 +15,7 @@ public class ProductRequestDto {
     private String name;
     private String description;
     private Double price;
+    private Integer stock;
     private MultipartFile image;
     private Long category;
     private String userId;

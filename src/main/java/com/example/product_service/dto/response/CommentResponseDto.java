@@ -9,12 +9,8 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class ProductResponseDto {
-
-    private String name;
+public class CommentResponseDto {
+    private String username;
     private String description;
-    private Double price;
-    private Integer stock;
-    private String image;
-    private CategoryProductDto category;
+    private Integer review;
 }
